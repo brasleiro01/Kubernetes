@@ -34,7 +34,6 @@ Desabilitar swap é crucial para que o Kubernetes funcione corretamente. O Kuber
 ```
 swapoff -a
 sed -i '/swap/d' /etc/fstab
-Note: Disabling swap ensures Kubernetes can manage resources more effectively, preventing potential issues with resource allocation.
 ```
 #
 **4. Carregue os módulos do kernel necessários**
