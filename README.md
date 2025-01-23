@@ -10,7 +10,7 @@ Antes de começarmos, verifique se você possui os seguintes pré-requisitos:
 * Conhecimentos básicos de Kubernetes, containerd e Cilium.
 Guia Passo a Passo
 
-**1. Instale as ferramentas necessárias**
+**1. Instale as ferramentas necessárias** (Opcional)
 
 Primeiro, precisamos garantir que o figlet e o toilet estejam instalados para imprimir mensagens coloridas.
 
@@ -21,7 +21,7 @@ if ! command -v figlet &> /dev/null || ! command -v toilet &> /dev/null; then
 fi
 ```
 #
-**2. Imprima o título**
+**2. Imprima o título** (Opcional)
 
 Use figlet para imprimir o título do script.
 ```
