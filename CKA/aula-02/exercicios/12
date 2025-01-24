@@ -1,0 +1,10 @@
+12 Crie um POD com as seguintes características:
+nome: ex-12
+image: nginx
+port: 80
+
+Após isso obtenha todas as variáveis de ambiente desse container e salve em /tmp/env-12
+
+kubectl run ex-12 --image=nginx --port:80
+kubectl exec -it ex-12 -n default -- bash
+env > /tmp/env-12

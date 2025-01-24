@@ -1,0 +1,3 @@
+5 Liste o nome de todos os pods no namespace default e salvar os nomes no arquivo /tmp/pods.
+
+kubectl get po -n default -o custom-columns=":metadata.name" > /tmp/pods

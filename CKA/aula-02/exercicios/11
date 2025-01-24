@@ -1,0 +1,3 @@
+11 Obtenha a versão do imagem do container do CoreDNS localizado no namespace kube-system e salve em /tmp/core-image.
+
+kubectl describe pod -n kube-system coredns-7c65d6cfc9-fgnkr | grep Image: > /tmp/core-image

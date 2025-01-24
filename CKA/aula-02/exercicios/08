@@ -1,0 +1,3 @@
+8 Delete o pod criado no exercício 1.
+
+kubectl delete pod -n default ex-1

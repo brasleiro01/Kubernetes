@@ -1,0 +1,15 @@
+2 Crie um POD com as seguintes características utilizando yaml:
+nome: ex-2
+image: nginx:latest
+port: 80
+
+apiVersion: v1
+kind: Pod
+metadata:
+    name: ex-2
+spec:
+    containers:
+      - image: nginx:latest
+        name: nginx
+        ports:
+          - containerPort: 80

@@ -1,0 +1,3 @@
+10 Altere a imagem do pod criado no exercício 2 para nginx:alpine
+
+kubectl edit pod -n default ex-2

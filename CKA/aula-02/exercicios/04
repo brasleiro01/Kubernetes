@@ -1,0 +1,3 @@
+4 Liste o nome de todos os pods no namespace default.
+
+kubectl get po -n default

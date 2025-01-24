@@ -1,0 +1,9 @@
+6 Utilizando o pod criado no exercício 3 fazer um teste do conexão entre os containers nginx e redis.
+
+kubectl exec -it ex-3 -n default -c nginx -- bash
+
+testando nginx:
+    - curl http://localhost:80
+
+testando redis:
+    - curl -v telnet://localhost:6379

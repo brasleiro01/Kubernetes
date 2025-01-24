@@ -1,0 +1,31 @@
+13 Crie um POD com as seguintes características:
+nome: ex-13
+image: nginx
+port: 80
+env: tier=web
+env: enrironment=dev
+Após isso obtenha todas as variáveis de ambiente desse container e salve em /tmp/env-13
+
+1- criar o 13.yaml
+
+apiVersion: v1
+kind: Pod
+metadata:
+    name: ex-13
+spec:
+  containers:
+    - image: nginx
+      name: nginx
+      ports:
+        - containerPort: 80
+      env:
+      - name: tier
+        value: "web"
+      - name: environment
+        value: "dev"
+
+2- kubectl apply -f 13.yaml
+
+3- kubectl exec -it ex-13 -n default -- bash
+
+4- env > /tmp/env-13

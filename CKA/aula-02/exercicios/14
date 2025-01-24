@@ -1,0 +1,23 @@
+14 Crie um POD com as seguintes características:
+nome: ex-14
+image: busybox
+args: sleep 3600
+Obtenha todas as variáveis de ambiente desse container e salve em /tmp/env-14
+
+1- criar o 14.yaml
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ex-14
+spec:
+  containers:
+  - name: busybox
+    image: busybox
+    args:
+    - sleep
+    - "3600"
+
+2- kubectl applyy -f 14.yaml
+
+3- kubectl exec ex-14 -- env > /tmp/env-14

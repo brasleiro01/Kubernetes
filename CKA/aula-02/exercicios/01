@@ -1,0 +1,6 @@
+1 Crie um POD com as seguintes características utilizando kubectl:
+nome: ex-1
+image: nginx
+port: 80
+
+kubectl run ex-1 --image=nginx --port=80
