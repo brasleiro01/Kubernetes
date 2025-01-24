@@ -1,0 +1,13 @@
+1- Criar um cluster Kubernetes com pelo menos 1 worker node + 1 Control Plane na versão 1.31.
+
+2- Fazer o upgrade do Cluster para versão 1.32.
+
+3- Crie alguns recursos no cluster.
+
+4- Fazer o backup do ETCD para o path /tmp/cka-snapshot.db.
+
+5- Delete os itens criados na task 3.
+
+6- Faça o restore do cluster e garanta que os recursos criados na task 3 estejam criados.
+
+O processo ideal é repetir essa lista pelo menos 10 vezes durante todo treinamento.

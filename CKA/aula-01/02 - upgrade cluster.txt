@@ -1,0 +1,53 @@
+1- baixar as keyring e pacotes deb da versão desejada
+    - curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.32/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+
+    - echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.32/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list
+
+2- liberar para poder atualizar
+    - apt-mark unhold kubeadm
+    - apt-mark unhold kubectl kubelet
+
+3- instalar as novas versões
+    - apt install kubeadm
+    - apt install kubectl kubelet
+
+4- planejamento para atualizar o cluster
+    - kubeadm upgrade plan
+    - exibira as informações para atualizar o cluster
+    - kubeadm upgrade apply v1.32.1
+
+5- bloqueando upgrade dos pacotes novamente
+    - apt-mark hold kubeadm kubectl kubelet
+
+6- preparar um node para manutenção
+    - kubectl drain worker01 --ignore-daemonsets
+
+## upgrade do node
+1- baixar as keyring e pacotes deb da versão desejada
+    - curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.32/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+
+    - echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.32/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list
+
+2- liberar para poder atualizar
+    - apt-mark unhold kubeadm
+
+3- instalar as novas versões
+    - apt install kubeadm
+
+4- fazendo o upgrade do node
+    - kubeadm upgrade node
+
+5- bloqueando o upgrade do kubeadm
+    - apt-mark hold kubeadm
+
+6- liberar para poder atualizar
+    - apt-mark unhold kubelet kubectl
+
+7- instalar as novas versões
+    - apt install kubectl kubelet
+
+8- bloqueando o upgrade do kubeadm
+    - apt-mark hold kubectl kubelet
+
+9- deixar o node ativo novamente
+    - kubectl uncordon worker01
