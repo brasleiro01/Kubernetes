@@ -15,12 +15,21 @@
     - mv etcd* /usr/bin/
 
 2- backup
-    - ETCDCTL_API=3 etcdctl --endpoints=https://127.0.0.1:2379 \
-  --cacert=<trusted-ca-file> --cert=<cert-file> --key=<key-file> \
-  snapshot save <backup-file-location>
+    - para assegurar que a operação ocorreu com sucesso cria um configmap e um deployment
+      kubectl create configmap restore
+      kubectl create deployment restore --image nginx
 
+    - verificar o arquivo para pegar as informações de certificado
+      /etc/Kubernetes/manifests/etcd.yaml
+
+    - ETCDCTL_API=3 etcdctl --endpoints=https://127.0.0.1:2379 \
+  --cacert=/etc/kubernetes/pki/etcd/ca.crt --cert=/etc/kubernetes/pki/etcd/server.crt --key=/etc/kubernetes/pki/etcd/server.key \
+  snapshot save /tmp/snapshot-cka.db
+    
 3- restore
-    - 
+    - ETCDCTL_API=3 etcdctl --data-dir=/var/lib/etcd-backup --endpoints=https://127.0.0.1:2379 \
+  --cacert=/etc/kubernetes/pki/etcd/ca.crt --cert=/etc/kubernetes/pki/etcd/server.crt --key=/etc/kubernetes/pki/etcd/server.key \
+  snapshot restore /tmp/snapshot-cka.db
 
 4- atualizando o arquivo etcd.yaml com os novos paths
-
+    - cd /etc/kubernetes/manifests/etcd.yaml
