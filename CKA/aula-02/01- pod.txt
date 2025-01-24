@@ -1,0 +1,70 @@
+###Pod simples###
+apiVersion: v1
+kind: Pod
+metadata:
+    name: primeiro-pod
+spec:
+    containers:
+      - image: nginx
+        name: nginx
+
+###Pod sidecar###
+apiVersion: v1
+kind: Pod
+metadata:
+    name: primeiro-pod
+spec:
+    containers:
+      - image: nginx
+        name: nginx
+        ports:
+        - containerPort: 80
+      - image: redis
+        name: redis
+        ports:
+        - containerPort: 6379
+
+###Pod executando comando###
+apiVersion: v1
+kind: Pod
+metadata:
+    name: primeiro-pod
+spec:
+    containers:
+      - image: nginx
+        name: nginx
+        ports:
+        - containerPort: 80
+        command: ["/bin/bash"]
+        args: ["-c", "while true; do echo CKA; sleep 10;done"]
+
+
+1- criação de um pod:
+  - sempre vai ser: kubectl run (nome)"nginx" --image (image)"nginx"
+
+2- simular a criação de um pod para validar:
+  - kubectl run nginx --image nginx --dry-run=client
+
+3- simular a criação e exibir o yaml:
+  - kubectl run nginx --image nginx --dry-run=client -o yaml
+
+4- para ver todas as opções de criação do pod:
+  - kubectl explain pod
+  - kubectl explain pod.spec --recursive
+
+5- acessando o pod e selecionando o container:
+  - kubectl exec -it pods/(nome do pod)nginx -c httpd -- bash
+
+6- testando a comunicação entre pods:
+  - curl http://localhost:80 (pod do nginx)
+  - curl -v telnet://localhost:6379 (pod do redis)
+
+7- diferenca entre "apply" e "replace":
+  - "apply", faz um diferencial e aplica a mudança feita
+    kubectl apply -f pod.yaml
+  
+  - "replace", deleta o recurso e cria novamente
+    kubectl replace -f pod.yaml --force
+
+8- sempre criar backup original dos pods para resolver questões:
+  - kubectl get pod nginx -o yaml > bkp-ex1.yaml

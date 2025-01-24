@@ -1,0 +1,23 @@
+###Replicaset simples###
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+    name: primeiro-rs
+    labels:
+        app: primeiro-rs
+spec:
+    replicas: 3
+    selector:
+        matchLabels:
+          app: primeiro-rs
+    template:
+        metadata:
+          labels:
+            app: primeiro-rs
+        spec:
+            containers:
+              - image: nginx
+                name: nginx
+
+
+1- replicaset não tem gestão após qualquer alteração sera necessário matar os pods para poder aplicar alterações.
