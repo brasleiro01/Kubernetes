@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: configmap-completo
+spec:
+  volumes:
+    - name: configmap
+      confiMap:
+        name: primeiro-cm
+  containers:
+    - name: pod1
+      image: alpine
+      comand: ["sleep", "8000"]
+      volumeMounts:
+        - name: configmap
+          mountPath: "/etc/podconfig"
+          readOnly: true
+      env:
+        - name: PRIMEIRA_ENV
+          value: "valor1"
+        - name: ENV_DO_POD
+          valueFrom:
+            configMapKeyRef:
+              name: primeiro-cm
+              key: chave2

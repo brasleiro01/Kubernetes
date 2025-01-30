@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: primeiro-cm
+data:
+  chave1: "valor1"
+  chave2: "valor2"
+
+  chave.parametros: |
+  chave3: "valor3"
